@@ -1029,6 +1029,28 @@ Targets must be re-baselined against the production database and hardware.
 
 ## 17. Delivery phases and exit criteria
 
+### Same-day public demonstrator — 2026-07-30
+
+The five-engineer launch cut is deliberately narrower than the hardened
+Release 1 programme below. It is implemented as five parallel ownership lanes:
+
+1. financial kernel and reconciliation invariants;
+2. planner UI, scenario controls, recurring-revenue view, and workflow;
+3. FastERP/FastHRM/FastCRM adapters, API, FastOffice SSO, and Google OIDC;
+4. Docker, Coolify, secrets, persistence, health, and deployment controls; and
+5. tests, browser QA, management reporting, catalogue, and launch verification.
+
+The launch cut includes deterministic synthetic data, four editable planning
+scenarios plus locked actuals, full linked statements, variance analysis,
+department workflow, audit history, CSV exchange, suite links, explanatory
+xAI, committed OpenAPI, and a persistent SQLite deployment. It intentionally
+uses fixture fallback when a sister API is unavailable and does not claim
+tenant-ready customer-data hosting.
+
+Exit: tests and container checks pass, both financial controls reconcile to
+zero, exact commits are pushed, Coolify is healthy, the public catalogue and
+FastOffice launcher are current, and DNS/TLS production smoke checks pass.
+
 ### Phase 0: decisions and contracts — 2 to 4 days
 
 - record the approved decisions in section 21;
@@ -1129,8 +1151,8 @@ Estimated Release 1 effort:
 - advanced multi-entity, multi-currency consolidation remains a separate
   programme.
 
-These are sequencing estimates, not commitments. Calendar capacity and desired
-launch date remain to be confirmed.
+These are sequencing estimates for the hardened product after the public
+demonstrator, not commitments for the same-day launch cut.
 
 ## 18. Suggested implementation PR sequence
 
@@ -1206,7 +1228,7 @@ deployed, and verified.
 | Management reporting becomes a document platform | Fixed first reports; integrate FastSlides/FastDocs for richer packs |
 | Multi-currency/consolidation consumes Release 1 | Single group currency first unless explicitly prioritised |
 
-## 21. Decision record and remaining input
+## 21. Decision record and launch dependencies
 
 Approved on 2026-07-30:
 
@@ -1232,12 +1254,14 @@ Approved on 2026-07-30:
     catalogue, FastOffice, and deployment are authorised.
 14. Use calendar-year monthly planning initially, with future-compatible
     calendar tables.
+15. Launch the synthetic demonstrator on 2026-07-30 with five engineers.
 
-Remaining input:
-
-- desired public launch date;
-- engineering capacity or whether execution should proceed serially;
-- any hard milestone such as an investor demo, customer pilot, or board date.
+The only unresolved launch dependency is external DNS control: create an A
+record for `fpa.fastsme.com` pointing to `191.218.164.166`. Once it resolves,
+Coolify can issue the trusted TLS certificate and the final public-domain smoke
+test can run. The Google OAuth client must also contain the exact redirect URI
+`https://fpa.fastsme.com/auth/google/callback`; FastOffice remains the preferred
+entry point if that console update is scheduled after launch.
 
 ## 22. Definition of Release 1 done
 
