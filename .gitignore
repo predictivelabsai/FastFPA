@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# FastFPA local runtime
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+output/
+.playwright-cli/
+.sesskey
